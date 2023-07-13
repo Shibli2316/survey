@@ -1,0 +1,96 @@
+Family Survey
+{WHO IS TAKING THE SURVEY}
+    FAMILY{
+        family id(primary key)
+        nature of Family(nuclear, joint etc) [DROPDOWN]
+        no of members
+        cast
+        no of bank acc in family
+        did anyone avail any govt scheme (single person/ family wise) [CHECKBOXES]
+        total annual income [DROPDOWN RANGE]
+        if(critical illness){ [RADIO]
+            patient's relation with head
+            what is the illness
+            getting treated [RADIO]
+                if(yes){
+                    from where (govt/private/No treatement) [RADIO]
+                }
+                else{
+                    not getting treated
+                }
+        }
+    }
+    
+    HOME{
+        does family own the house [RADIO]
+        if(joined house){ [RADIO]
+            no of families
+        }
+        kind of house(Kacha, rented....) [DROPDOWN]
+        no of rooms in house
+        electricity supply [RADIO]
+        source of water [RADIO]
+        address
+        locality [DROPDOWN]
+        electronic gadget and appliances in home(phone/tv/fridge) [CHECKBOXES] 
+    }
+
+        HEAD{
+            head id(primary key)
+            foreign key(family id)
+            name of the head of the Family
+            gender [RADIO]
+            age and dob
+            highest qualification
+            is employed{ [RADIO]
+                profession [DROPDOWN]
+            }
+            phone number
+            aadhaar number
+            other government id
+        }
+
+        SPOUSE{
+            spouse id(primary key)
+            foreign key(family id)
+            name
+            gender [RADIO]
+            highest qualification
+            age and dob
+            profession [DROPDOWN]
+            phone number
+            aadhar number
+            other government id
+        }
+       
+        CHILDREN{
+            foreign key(family id)
+            number of children
+            status of child (with or without parent) [RADIO]
+            child family status (divorced, single parent etc) [RADIO]
+            weather both parents are alive or dead(if no then who is the gardian) [RADIO]
+            relation with gardian
+        }
+
+        CHILD{
+            children id(primary key)
+            foreign key(family id)
+            name
+            age and dob
+            gender [RADIO]
+            aadhar id
+            studying/dropout/part time job with studies [RADIO]
+                school/institute name
+                highest qualification + from
+            working or not
+            phone - yes/no { [RADIO]
+                phone no
+            }
+            orignal residence of the child
+                if(outside){
+                    where is permanent residence;
+                }
+                elseif(in aligarh){
+                    locality [DROPDOWN]
+                }
+            }
