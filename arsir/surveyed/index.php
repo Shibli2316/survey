@@ -2,6 +2,20 @@
 include '../includes/header.php';
 ?>
 
+<?php
+
+$connect = new PDO("mysql:host=localhost;dbname=survey", "root", "");
+
+$query = "
+SELECT * FROM ars;
+";
+
+$statement = $connect->prepare($query);
+$statement->execute();
+$result = $statement->fetchAll();
+
+?>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -16,43 +30,64 @@ include '../includes/header.php';
                 <i class="fas fa-fw fa-plus"></i>
             </button>
         </div>
+
+
+        <!-- add filters here -->
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Name</th>
-                            <th>Posted on</th>
-                            <th>Survey done</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Name</th>
-                            <th>Posted on</th>
-                            <th>Survey done</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Shibli</td>
-                            <td>25/04/2011</td>
-                            <!-- A link has to be added here to go to particular.php -->
-                            <td>3</td>
-                            <td>View | Delete</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <form method="post" action="export.php">
+                    <div class="col-md-2">
+                        <input type="submit" name="export" value="Export" class="btn btn-info" />
+                    </div>
+                </form>
+            </div>
+
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Posted on</th>
+                                <th>Survey done</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Posted on</th>
+                                <th>Survey done</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        <?php
+      foreach($result as $row)
+      {
+       echo '
+       <tr>
+        <td>'.$row["a_id"].'</td>
+        <td>'.$row["uname"].'</td>
+        <td>'.$row["password"].'</td>
+        <td>'.$row["email"].'</td>
+        <td>View | Delete</td>
+
+       </tr>
+       ';
+      }
+      ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php
-include '../includes/footer.php';
-?>
+    <?php
+    include '../includes/footer.php';
+    ?>
