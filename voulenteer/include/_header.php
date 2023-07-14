@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+    header("location: ../index.php");
+    exit;
+}else{
+    $usernameVoul = $_SESSION['username'];
+    // echo $usernameVoul;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +51,7 @@
                         <a class='nav-link' href='../collect/child.php'>Children</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='#'>Logout</a>
+                        <a class='nav-link' href='../collection/logout.php'>Logout</a>
                     </li>
                 </ul>
             </div>

@@ -1,6 +1,17 @@
 <?php
 include '../include/_dbconnect.php';
 
+
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+    header("location: ../index.php");
+    exit;
+}else{
+    $usernameVoul = $_SESSION['username'];
+    // echo $usernameVoul;
+}
+
+
 if($_SERVER['REQUEST_METHOD']=="POST"){
     $nature = $_POST['nature'];
     $members = $_POST['members'];
@@ -11,7 +22,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $illness = $_POST['illness'];
     $child = $_POST['child'];
     
-    $sql = "INSERT INTO `family` (`nature`, `member`, `cast`, `noBank`, `govtScheme`, `income`, `illness`, `child`) VALUES ('$nature', '$members', '$cast', '$bankAcc', '$govt', '$income', '$illness', '$child');";
+    $sql = "INSERT INTO `family` (`voul_id`, `nature`, `member`, `cast`, `noBank`, `govtScheme`, `income`, `illness`, `child`) VALUES ('$usernameVoul', '$nature', '$members', '$cast', '$bankAcc', '$govt', '$income', '$illness', '$child');";
     $run = mysqli_query($conn, $sql);
     
     if($run){
