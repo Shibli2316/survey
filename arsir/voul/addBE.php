@@ -15,9 +15,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     
     $sql = "INSERT INTO `voul` (`username`, `password`, `fname`, `lname`, `details`, `address`, `email`, `phone`, `employed`) VALUES ('$username', '$password', '$fname', '$lname' ,'$pData', '$location', '$email', '$phone', '$fDay');";
     $run = mysqli_query($conn, $sql);
-    var_dump($sql);
+    // var_dump($sql);
     if($run){
-        echo "<script>alert('Your records has been updated successfully!!!')</script>";
+        echo "<script>alert('Your records has been added successfully!!!')</script>";
         ?>
         <meta http-equiv="refresh" content="0; url = index.php" />
         <?php

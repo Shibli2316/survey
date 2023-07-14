@@ -60,7 +60,12 @@ include '../includes/_dbconnect.php';
                             <td>" . $row['employed'] . "</td>
                             <!-- A link has to be added here to go to particular.php -->
                             <td>3</td>
-                            <td> <a href='profileView.php?vid=".$row['v_id']."'> View </a> | Delete</td>
+                            <td> <a href='profileView.php?vid=".$row['v_id']."'> <button class='btn btn-primary btn-primary'>View</button></a>  
+                            <hr>
+                            <form action='delVoul.php?vid=".$row['v_id']."' method='post'>
+                                <button class='btn btn-danger btn-danger'>Delete</button>
+                            </form>
+                            </td>
                         </tr>
                     </tbody>";
                             $sno = $sno + 1;
